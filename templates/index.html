@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles/output.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles/main.css') }}">
+
+    <script src="https://unpkg.com/htmx.org@1.9.11/dist/htmx.js" integrity="sha384-l9bYT9SL4CAW0Hl7pAOpfRc18mys1b0wK4U8UtGnWOxPVbVMgrOdB+jyz/WY8Jue" crossorigin="anonymous"></script>
+
+
+
+
+    <div><meta http-equiv="refresh" content="3600"></div>
+
+    <title>Document</title>
+</head>
+<body hx-boost="true">
+    <div class="h-screen w-screen flex flex-col background">
+        {% include "./components/navbar.html" %}        
+        <div class="flex flex-col items-center mt-10">
+            <a hx-disable href="/sso/spotify" class="bg-green-400 max-w-96 rounded-lg text-slate-400 p-1">Login to Spotify</a>
+        </div>
+        {% block content %}
+        
+        {% endblock  %}
+    </div>
+
+
+</body>
+</html>
