@@ -16,7 +16,7 @@ load_dotenv(find_dotenv())
 class SpotifyAuth(BaseModel):
     response_type:str = 'code'
     client_id:str = os.environ.get("CLIENT_ID")
-    scope:str = "user-read-private user-read-email"
+    scope:str = "user-read-private user-read-email playlist-read-private playlist-read-collaborative"
     redirect_uri:str = "http://127.0.0.1:8000/sso/spotify/callback"
     class Config:
         validate_assignment = True

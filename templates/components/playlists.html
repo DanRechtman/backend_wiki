@@ -1,0 +1,4 @@
+{% for item in response['items'] %}
+    <p>{{item['name']}}</p>
+    <img src="{{item['images'][0]['url']}}" height="300" width="300" alt="spotify_playlist_img">
+{% endfor %}

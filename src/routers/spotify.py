@@ -17,13 +17,17 @@ router = APIRouter(
 templates = Jinja2Templates(directory="templates")
 load_dotenv(find_dotenv())
 
-@router.get("/playlist",tags=[auth_required.__name__])
+@router.get("/playlist",tags=[auth_required.__name__],response_class=HTMLResponse)
 @auth_required
-async def playlists(request:Request):
+async def playlist(request:Request):
     response:Response = get("https://api.spotify.com/v1/me/playlists",
         headers={f"Authorization":f"{request.cookies.get('token_type')} {request.cookies.get('access_token')}"}
             )
-    return response.json()
+    return templates.TemplateResponse(
+        request=request,
+        name="components/playlists.html",
+        context={"response":response.json()}
+    )
 
 
 
