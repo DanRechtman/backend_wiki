@@ -29,8 +29,9 @@ jobs:
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSHKEY}}
           script: |
+            rm -rf ./backend_wiki/
             git clone https://github.com/DanRechtman/backend_wiki.git
-            cd /backend_wiki
+            cd ./backend_wiki
             pip install -r ./requirements.txt
             npm install
             uvicorn src.main:app --port 80
