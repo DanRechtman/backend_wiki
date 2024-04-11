@@ -29,7 +29,7 @@ jobs:
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSHKEY}}
           script: |
-            git clone git@github.com:DanRechtman/backend_wiki.git
+            git clone https://github.com/DanRechtman/backend_wiki.git
             cd /backend_wiki
             pip install -r ./requirements.txt
             npm install
