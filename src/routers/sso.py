@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import JSONResponse, RedirectResponse, Response
-from data.testing import dataTest
+from ..data.testing import dataTest
 from pydantic import BaseModel, Field
 import os
 from dotenv import load_dotenv,find_dotenv

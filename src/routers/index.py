@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 
-from data.testing import dataTest
+from ..data.testing import dataTest
 
 router = APIRouter(
     prefix=""

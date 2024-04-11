@@ -4,9 +4,9 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
-from data.testing import dataTest
+from .data.testing import dataTest
 
-from routers import index,sso,auth,spotify
+from .routers import index,sso,auth,spotify
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")

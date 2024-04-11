@@ -5,7 +5,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from .auth import auth_required
-from data.testing import dataTest
+from ..data.testing import dataTest
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv,find_dotenv
 from requests import post,get

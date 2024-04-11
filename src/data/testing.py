@@ -1,5 +1,5 @@
 
-from models.TestDTO import Test
+from ..models.TestDTO import Test
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from dotenv import load_dotenv,find_dotenv

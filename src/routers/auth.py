@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 import starlette
-from data.testing import dataTest
+from ..data.testing import dataTest
 from pydantic import BaseModel, Field
 import os
 from dotenv import load_dotenv,find_dotenv
