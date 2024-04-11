@@ -29,7 +29,9 @@ jobs:
             rm -rf ./backend_wiki/
             git clone https://github.com/DanRechtman/backend_wiki.git
             cd ./backend_wiki
-            pip install -r ./requirements.txt
+            python3 -m venv .venv
+            source .venv/bin/activate
+            python3 -m pip install -r requirements.txt
             npm install
             uvicorn src.main:app --port 80
             echo "Finished"
