@@ -11,21 +11,21 @@
 
 
 
-    <div><meta http-equiv="refresh" content="3600"></div>
 
     <title>Document</title>
 </head>
 <body hx-boost="true">
-    <div class="h-screen w-screen overflow-auto flex flex-col background">
-        {% include "./components/navbar.html" %}        
-        <div class="flex flex-col items-center mt-10">
-            <a hx-disable href="/sso/spotify" class="bg-green-400 max-w-96 rounded-lg text-slate-400 p-1">Login to Spotify</a>
+    <div class="h-[calc(100dvh)] w-screen overflow-auto flex flex-col ">
+        {% include "./components/navbar.html" %}      
+        <button hx-get="/spotify/playlist" hx-swap="outerHTML" hx-trigger="load"></button>
+        
+        <div class="flex flex-wrap gap-4 mt-10">
+        
         </div>
-
-        <button hx-get="/spotify/playlist" hx-swap="outerHTML" hx-trigger="click">Click me</button>
         {% block content %}
         
         {% endblock  %}
+        
     </div>
 
 

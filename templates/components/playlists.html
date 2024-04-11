@@ -1,4 +1,15 @@
-{% for item in response['items'] %}
-    <p>{{item['name']}}</p>
-    <img src="{{item['images'][0]['url']}}" height="300" width="300" alt="spotify_playlist_img">
-{% endfor %}
+
+<div class="grid grid-cols-4 grid-rows-4 gap-4 bg-slate-500">
+
+    {% for item in response['items'] %}
+    
+    <div class="place-self-center drop-shadow-lg bg-gray-400 pl-4 pr-4 pb-4">
+        <span class="text-stone-300">
+            
+        </span>
+        <p>{{item['name']}}</p>
+        <img class='place-self-center' src="{{item['images'][0]['url']}}" height="50" width="50" alt="spotify_playlist_img">
+    </div>
+    
+    {% endfor %}
+</div>

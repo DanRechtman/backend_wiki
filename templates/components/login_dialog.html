@@ -1,0 +1,14 @@
+<dialog open hx-disable class="rounded-md shadow-md bg-stone-400 backdrop:bg-gray-500 backdrop:bg-opacity-50 h-1/4 w-1/4">
+  
+  <p>Please Login 
+    <span>
+        <button class="float-end"autofocus>Close</button>
+    </span>
+  </p>
+  <form  method="dialog" hx-disable class="flex flex-col justify-center  z-50">
+    <a hx-disable href="/sso/spotify" class="bg-green-400 max-w-96 rounded-lg text-slate-400 p-1">Login to Spotify</a>
+
+    
+  </form>
+</dialog>
+<script src="{{ url_for('static', path='/js/dialog.js') }}"></script>

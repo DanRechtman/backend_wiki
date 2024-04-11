@@ -3,6 +3,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
+import starlette
 from data.testing import dataTest
 from pydantic import BaseModel, Field
 import os
@@ -15,22 +16,22 @@ router = APIRouter(
     
 )
 
+
+templates = Jinja2Templates(directory="templates")
 # Decorator
 def auth_required(func):
     @wraps(func)
     async def wrapper(*args, **kwargs):
-        print(f"{kwargs=}")
-        request = kwargs['request']
+        request:Request = kwargs['request']
+        
         authed = await logged(request=request)
-        print(f"{authed=}")
+        
         if (authed):
             return await func(*args,**kwargs)
         else:
-            return HTMLResponse("Please Authenticate")
+            return templates.TemplateResponse(request=request,name="components/login_dialog.html")
     return wrapper
 
-
-templates = Jinja2Templates(directory="templates")
 load_dotenv(find_dotenv())
 
 @router.get("/me")
@@ -48,7 +49,7 @@ async def logged(request:Request)->bool:
         headers={f"Authorization":f"{request.cookies.get('token_type')} {request.cookies.get('access_token')}"}
             )
     authed = False
-    print(response)
+    
     if 'error' in response.json():
         authed =False
     else:
