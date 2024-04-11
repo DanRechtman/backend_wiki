@@ -23,11 +23,15 @@ jobs:
 
 
       - name: Deploy
-        run: |
-          ssh -i ${{secrets.SSHKEY}} ${{secrets.SSH_USER}}@${{secrets.DROPLET_IP }} << EOF
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{secrets.DROPLET_IP}}
+          username: ${{secrets.SSH_USER}}
+          key: ${{secrets.SSHKEY}}
+        script: |
             git pull origin main
             cd /backend_wiki
             pip install -r ./requirements.txt
             npm install
             uvicorn src.main:app --port 80
-          EOF
+            echo "Finished"
