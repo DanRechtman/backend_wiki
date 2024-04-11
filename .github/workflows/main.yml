@@ -24,7 +24,7 @@ jobs:
 
       - name: Deploy
         run: |
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.DROPLET_IP }} << EOF
+          ssh -i ${{secrets.SSHKEY}} ${{secrets.SSH_USER}}@${{secrets.DROPLET_IP }} << EOF
             git pull origin main
             cd /backend_wiki
             pip install -r ./requirements.txt
