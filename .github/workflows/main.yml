@@ -1,0 +1,33 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          npm install
+          pip install -r ./requirements.txt
+   
+      
+      
+
+
+      - name: Deploy
+        run: |
+          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.DROPLET_IP }} << EOF
+            git pull origin main
+            cd /backend_wiki
+            pip install -r ./requirements.txt
+            npm install
+            uvicorn src.main:app --port 80
+          EOF
