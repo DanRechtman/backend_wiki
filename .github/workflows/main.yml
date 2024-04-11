@@ -28,8 +28,8 @@ jobs:
           host: ${{secrets.DROPLET_IP}}
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSHKEY}}
-        script: |
-            git pull origin main
+          script: |
+            git clone git@github.com:DanRechtman/backend_wiki.git
             cd /backend_wiki
             pip install -r ./requirements.txt
             npm install
