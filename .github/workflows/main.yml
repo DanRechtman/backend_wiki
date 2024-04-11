@@ -33,5 +33,8 @@ jobs:
             source .venv/bin/activate
             python3 -m pip install -r requirements.txt
             npm install
-            uvicorn src.main:app --port 80
-            echo "Finished"
+      - name: Post Deploy Run
+        run: |
+          uvicorn src.main:app --host 0.0.0.0 --port 80 --workers 4
+        
+            
