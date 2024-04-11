@@ -35,6 +35,7 @@ jobs:
             npm install
       - name: Post Deploy Run
         run: |
+          cd ./backend_wiki
           source .venv/bin/activate
           uvicorn src.main:app --host 0.0.0.0 --port 80 --workers 4
         
