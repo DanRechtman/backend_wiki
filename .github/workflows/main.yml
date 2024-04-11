@@ -1,0 +1,37 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          npm install
+          pip install -r ./requirements.txt
+
+
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{secrets.DROPLET_IP}}
+          username: ${{secrets.SSH_USER}}
+          key: ${{secrets.SSHKEY}}
+          script: |
+            rm -rf ./backend_wiki/
+            git clone https://github.com/DanRechtman/backend_wiki.git
+            cd ./backend_wiki
+            python3 -m venv .venv
+            source .venv/bin/activate
+            python3 -m pip install -r requirements.txt
+            npm install
+            uvicorn src.main:app --port 80
+            echo "Finished"
