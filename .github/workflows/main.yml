@@ -26,6 +26,7 @@ jobs:
           username: ${{secrets.SSH_USER}}
           key: ${{secrets.SSHKEY}}
           script: |
+            systemctl kill website
             rm -rf ./backend_wiki/
             git clone https://github.com/DanRechtman/backend_wiki.git
             cd ./backend_wiki
@@ -33,5 +34,6 @@ jobs:
             source .venv/bin/activate
             python3 -m pip install -r requirements.txt
             npm install
-            uvicorn src.main:app --port 80
-            echo "Finished"
+            systemctl start website
+
+            
