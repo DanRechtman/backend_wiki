@@ -36,7 +36,7 @@ class SpotifyAuthResponse(BaseModel):
 @router.get("/spotify")
 async def spotify(request:Request, model:SpotifyAuth = Depends()):
     print(str(request.url))
-    model.redirect_uri = str(request.url) + "/callback"
+    model.redirect_uri = str(request.url).replace("http","https") + "/callback"
     
     return RedirectResponse(f"https://accounts.spotify.com/authorize?response_type={model.response_type}&client_id={model.client_id}&scope={model.scope}&redirect_uri={model.redirect_uri}")
 
