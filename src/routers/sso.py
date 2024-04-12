@@ -14,10 +14,14 @@ router = APIRouter(
 templates = Jinja2Templates(directory="templates")
 load_dotenv(find_dotenv())
 class SpotifyAuth(BaseModel):
+
+   
     response_type:str = 'code'
     client_id:str = os.environ.get("CLIENT_ID")
     scope:str = "user-read-private user-read-email playlist-read-private playlist-read-collaborative"
-    redirect_uri:str = "http://127.0.0.1:8000/sso/spotify/callback"
+    redirect_uri:str = "http://127.0.0.1:80/sso/spotify/callback"
+
+
     class Config:
         validate_assignment = True
 class SpotifyCallback(BaseModel):
@@ -29,12 +33,10 @@ class SpotifyAuthResponse(BaseModel):
     scope:str
     expires_in:int
     refresh_token:str
-    # @classmethod
-    # def parse_obj(self, obj):
-    #     return self._convert_to_real_type_(obj)
 @router.get("/spotify")
 async def spotify(request:Request, model:SpotifyAuth = Depends()):
-    
+    print(str(request.url))
+    model.redirect_uri = str(request.url) + "/callback"
     
     return RedirectResponse(f"https://accounts.spotify.com/authorize?response_type={model.response_type}&client_id={model.client_id}&scope={model.scope}&redirect_uri={model.redirect_uri}")
 
