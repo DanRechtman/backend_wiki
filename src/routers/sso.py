@@ -41,7 +41,7 @@ async def spotify(request:Request, model:SpotifyAuth = Depends()):
         model.redirect_uri = str(request.url) + "/callback"
 
 
-    
+    print(f"{model.redirect_uri=}")
     return RedirectResponse(f"https://accounts.spotify.com/authorize?response_type={model.response_type}&client_id={model.client_id}&scope={model.scope}&redirect_uri={model.redirect_uri}")
 
 
