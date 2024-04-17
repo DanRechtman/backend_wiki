@@ -65,8 +65,8 @@ async def spotify_callback(request:Request,model:SpotifyCallback = Depends()):
     dictionay = dict(value.json())
     models:SpotifyAuthResponse = SpotifyAuthResponse(**dictionay)
     redirect_url = request.url_for("read_root")
+    print(f"{redirect_url=}")
     response = RedirectResponse(redirect_url)
-    
     
     response.set_cookie("access_token",models.access_token)
     response.set_cookie("token_type",models.token_type)
