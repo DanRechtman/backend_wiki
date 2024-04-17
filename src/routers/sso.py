@@ -47,7 +47,7 @@ async def spotify(request:Request, model:SpotifyAuth = Depends()):
 
 @router.get("/spotify/callback")
 async def spotify_callback(request:Request,model:SpotifyCallback = Depends()):
-    print(request.json())
+    print(await request.json())
     auth = base64.b64encode(f"{ os.environ.get('CLIENT_ID')}:{ os.environ.get('CLIENT_SECRET')}".encode("utf-8")).decode("ascii")
     value:Response = post(
         url="https://accounts.spotify.com/api/token",
