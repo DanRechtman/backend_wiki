@@ -35,7 +35,10 @@ class SpotifyAuthResponse(BaseModel):
     refresh_token:str
 @router.get("/spotify")
 async def spotify(request:Request, model:SpotifyAuth = Depends()):
-    model.redirect_uri = str(request.url).replace("http","https") + "/callback"
+    if (os.environ.get("CLIENT_ID")):
+        model.redirect_uri = str(request.url).replace("http","https") + "/callback"
+    else:
+        model.redirect_uri = str(request.url) + "/callback"
 
 
     
@@ -58,6 +61,7 @@ async def spotify_callback(request:Request,model:SpotifyCallback = Depends()):
                     'Authorization': f"Basic {auth}"
         }
     )
+    print(value.json())
     dictionay = dict(value.json())
     models:SpotifyAuthResponse = SpotifyAuthResponse(**dictionay)
 
