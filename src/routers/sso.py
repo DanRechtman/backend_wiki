@@ -35,12 +35,7 @@ class SpotifyAuthResponse(BaseModel):
     refresh_token:str
 @router.get("/spotify")
 async def spotify(request:Request, model:SpotifyAuth = Depends()):
-    if bool(os.environ.get("PROD")) :
-        
-        model.redirect_uri = "https://semnity.com/sso/spotify/callback"
-    else:
-        print( str(request.url) + "/callback")
-        model.redirect_uri = str(request.url) + "/callback"
+    model.redirect_uri = str(request.url).replace("http","https") + "/callback"
 
 
     
