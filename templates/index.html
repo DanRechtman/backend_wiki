@@ -15,7 +15,7 @@
     <title>Document</title>
 </head>
 <body hx-boost="true">
-    <div class="h-[calc(100dvh)] w-screen overflow-auto flex flex-col ">
+    <div class="h-[calc(100dvh)] w-screen overflow-auto flex flex-col bg-slate-500 ">
         {% include "./components/navbar.html" %}      
         <button hx-get="/spotify/playlist" hx-swap="outerHTML" hx-trigger="load"></button>
         
