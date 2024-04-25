@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles/output.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles/main.css') }}">
+
+    <script src="https://unpkg.com/htmx.org@1.9.11/dist/htmx.js" integrity="sha384-l9bYT9SL4CAW0Hl7pAOpfRc18mys1b0wK4U8UtGnWOxPVbVMgrOdB+jyz/WY8Jue" crossorigin="anonymous"></script>
+
+
+
+
+
+    <title>Semnity</title>
+</head>
+<body hx-boost="true">
+    <div class="h-[calc(100dvh)] w-screen overflow-auto flex flex-col bg-slate-500 ">
+        {% include "./components/navbar.html" %}      
+        {% block content %}
+        
+        {% endblock  %}
+        
+    </div>
+
+
+</body>
+</html>

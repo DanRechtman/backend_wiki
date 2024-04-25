@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for song in arr %}
+      
+        {% if song[3] | first is defined %}
+            {% with last_img=song[3]|first %}
+                <div class="flex mb-4">
+                    <input type="hidden" value="{{song[2]}}">
+                    <img src="{{last_img.url}}" height="64" width="64"  alt="">
+                    <div>
+                        <p>{{song[0]}}</p>
+                        <p>{{song[1]|first}}</p>          
+                    </div>
+                
+                </div>
+            {% endwith %}
+        
+        {% else %}
+            <p>No Image found</p>
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock  %}
